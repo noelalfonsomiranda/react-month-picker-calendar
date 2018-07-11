@@ -1,0 +1,78 @@
+.calendar-container {
+  width: 360px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  background: #fff;
+  border: 2px solid #eee;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+/*  SECTIONS  */
+.section_mp {
+  clear: both;
+  padding: 0px;
+  margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col_mp {
+  display: block;
+  float:left;
+  text-align: center;
+}
+.col_mp:first-child {
+  margin-left: 0;
+}
+
+/*  GROUPING  */
+.group_mp:before, .group:after {
+  content:"";
+  display:table;
+}
+.group_mp:after {
+  clear:both;
+}
+.group_mp {
+  zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_1_of_3_mp {
+  width: 33.33%;
+}
+
+.col_mp.active {
+  background-color: #99DADA;
+  color: #00A3A3;
+  font-weight: 700;
+}
+
+.col_mp{
+  border-bottom: 1px solid #F6F9F9;
+  font-size: 16px;
+  padding-bottom: 5px;
+  padding-top:5px;
+}
+
+.col_mp:hover{
+  color:white;
+  background-color: #00A3A3;
+  cursor: pointer;
+}
+.selected_date_mp{
+  font-size:12px;
+  color:#00A3A3;
+  font-weight: bold;
+}
+.selected_cell.active{
+  background-color: #00A3A3;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+.arrows_mp{
+  font-weight: bold;
+  font-size: 18px;
+}

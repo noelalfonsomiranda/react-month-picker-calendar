@@ -1,0 +1,11 @@
+*
+!dist/
+!dist/*
+!dist/**/*
+!*.ts
+!src/*
+!src/**/*
+!package.json
+!*.md
+!LICENSE
+!yarn.lock
