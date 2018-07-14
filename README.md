@@ -13,7 +13,7 @@ A month picker input and calendar for React.
 | onChange | Function: (maskedValue: string, year: number, month: number) => any | - | onChange callback, receives `maskedValue`, `year` and `month` (begins with 0) as arguments |
 | closeOnSelect | boolean | false | Close calendar on month select |
 | onChangeYearUpdate | boolean | true | Handle year update with previous and next |
-| inputRef | Function: (ref => {if (ref) ref.input.style.display = 'none'}) | - | Modification of calendar input |
+| inputRef | Function: (ref) => any | - | Modification of calendar input |
 
 ## Installation
 
