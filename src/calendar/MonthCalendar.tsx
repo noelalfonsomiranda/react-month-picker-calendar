@@ -4,6 +4,7 @@ import OutsideClickWrapper from '../OutsideClickWrapper';
 
 import Head from './Head';
 import { MONTHS_NAMES, VIEW_MONTHS, VIEW_YEARS } from './constants';
+import { rangeCreator } from '../utils'
 
 export interface IProps {
   year: void|number,
@@ -20,8 +21,7 @@ export interface IState {
   selectedYear: void|number,
   selectedMonth: void|number,
   currentView: string,
-  unRangeMonths: any,
-  isActive: boolean
+  unRangeMonths: any
 }
 
 class MonthCalendar extends Component<IProps, IState> {
@@ -41,8 +41,7 @@ class MonthCalendar extends Component<IProps, IState> {
       selectedYear: year,
       selectedMonth: month,
       currentView: year ? VIEW_MONTHS : VIEW_YEARS,
-      unRangeMonths: [],
-      isActive: true
+      unRangeMonths: []
     };
   }
 
@@ -59,26 +58,18 @@ class MonthCalendar extends Component<IProps, IState> {
   };
 
   selectMonth = (selectedMonth: number): void => {
-    this.setState({ selectedMonth, isActive: true });
+    this.setState({ selectedMonth });
     this.onChange(this.state.selectedYear, selectedMonth);
   };
 
   previous = (): void => {
     const parseYear = this.state.years[6] -= 1;
     this.selectYear(parseYear)
-
-    this.setState({isActive: true})
-
-    // this.updateYears(parseYear);
   }
 
   next = () => {
     const parseYear = this.state.years[6] += 1;
     this.selectYear(parseYear)
-
-    this.setState({isActive: false})
-
-    // this.updateYears(parseYear);
   }
 
   updateYears = (startYear: number): void => {
@@ -91,18 +82,57 @@ class MonthCalendar extends Component<IProps, IState> {
     return this.state.currentView === VIEW_YEARS;
   }
 
+  getDuration = (month: number): any => {
+    const { selectedMonth, selectedYear } = this.state
+    const { year } = this.props
+    let selected = 12
+    let duration = 0
+
+    if (year === selectedYear) {
+      selected = Number(selectedMonth) || 1
+      duration = (12 - selected)
+    } else if ((Number(year) + 1) === selectedYear) {
+      selected = 0
+      duration = Number(selectedMonth)
+    }
+
+    return {
+      selected,
+      duration
+    }
+  }
+
+  getRange = (month: number): string[] =>{
+    const { selected, duration } = this.getDuration(month);
+    return rangeCreator(selected, duration)
+      .map((month) => MONTHS_NAMES['default'][month]);
+  }
+
+  isCurrentActiveRange = (month: number): boolean => {
+    const rangeMonth = this.getRange(month);
+    return rangeMonth.indexOf(String(month)) > -1;
+  }
+
+  shouldShowActiveRange = (month) => {
+    if (this.isCurrentActiveRange(month)) {
+      return 'active';
+    }
+ 
+    return '';
+  }
+
   renderMonths = (): JSX.Element[] => {
-    const { selectedMonth, unRangeMonths, isActive } = this.state;
+    const { selectedMonth, selectedYear } = this.state;
+    const { year } = this.props
 
     return MONTHS_NAMES[this.props.lang].map((month, index) => {
-      const selectedKlass = selectedMonth === index ? 'selected_cell' : '';
-      const monthsRange = isActive ? unRangeMonths.indexOf(month) < 0 ? 'active' : '' : unRangeMonths.indexOf(month) < 0 ? '' : 'active';
-
+      const selectedKlass = (selectedMonth === index && selectedYear === year)? 'selected_cell active' : '';
+      const rangeActive = this.shouldShowActiveRange(month)
       return (
         <div
           key={index}
           onClick={() => this.selectMonth(index)}
-          className={`col_mp span_1_of_3_mp ${selectedKlass} ${monthsRange}`}
+          className={`col_mp span_1_of_3_mp ${selectedKlass} ${rangeActive}`}
         >{month}</div>
       )
     });
@@ -113,7 +143,6 @@ class MonthCalendar extends Component<IProps, IState> {
 
     return this.state.years.map((year, i) => {
       const selectedKlass = selectedYear === year ? 'selected_cell' : '';
-
       return (
         <div
           key={i}
@@ -125,23 +154,10 @@ class MonthCalendar extends Component<IProps, IState> {
   }
 
   handleMonthRange = (month): void => {
-    let months =  [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
-    ];
-
-    const parseMonths = months.splice(0, month);
-    this.setState({unRangeMonths: parseMonths});
+    const months = [ ...MONTHS_NAMES['default'] ]
+    this.setState({
+      unRangeMonths: months.splice(month)
+    });
   }
 
   componentDidMount () {
