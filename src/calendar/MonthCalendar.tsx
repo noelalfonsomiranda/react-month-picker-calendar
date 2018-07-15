@@ -13,7 +13,8 @@ export interface IProps {
   startYear?: number,
   onChange: (selectedYear: number, selectedMonth: number) => any,
   onOutsideClick: (e: any) => any,
-  onChangeYearUpdate?: boolean
+  onChangeYearUpdate?: boolean,
+  rangePicker?: boolean
 }
 
 export interface IState {
@@ -26,7 +27,8 @@ export interface IState {
 
 class MonthCalendar extends Component<IProps, IState> {
   static defaultProps = {
-    onChangeYearUpdate: true
+    onChangeYearUpdate: true,
+    rangePicker: false
   }
 
   constructor(props: IProps){
@@ -123,11 +125,11 @@ class MonthCalendar extends Component<IProps, IState> {
 
   renderMonths = (): JSX.Element[] => {
     const { selectedMonth, selectedYear } = this.state;
-    const { year } = this.props
+    const { year, rangePicker } = this.props
 
     return MONTHS_NAMES[this.props.lang].map((month, index) => {
       const selectedKlass = (selectedMonth === index && selectedYear === year)? 'selected_cell active' : '';
-      const rangeActive = this.shouldShowActiveRange(month)
+      const rangeActive = rangePicker ? this.shouldShowActiveRange(month) : ''
       return (
         <div
           key={index}

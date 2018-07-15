@@ -26,7 +26,8 @@ export interface IProps {
   onChange?: OnChange,
   closeOnSelect?: boolean,
   onChangeYearUpdate?: boolean,
-  inputRef?: Function
+  inputRef?: Function,
+  rangePicker?:boolean
 };
 
 export interface IState {
@@ -42,7 +43,8 @@ class MonthPickerInput extends Component<IProps, IState> {
 
   public static defaultProps: Partial<IProps> = {
     inputProps: {},
-    closeOnSelect: false
+    closeOnSelect: false,
+    rangePicker: false
   };
 
   constructor(props) {
@@ -108,7 +110,7 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   calendar = (): JSX.Element => {
-    const { onChangeYearUpdate } = this.props
+    const { onChangeYearUpdate, rangePicker } = this.props
     const { year, month } = this.state;
     let lang = this.props.lang ? this.props.lang : 'default';
     return (
@@ -120,6 +122,7 @@ class MonthPickerInput extends Component<IProps, IState> {
           onChange={this.onCalendarChange}
           onOutsideClick={this.onCalendarOutsideClick}
           onChangeYearUpdate={onChangeYearUpdate}
+          rangePicker={rangePicker}
         />
       </div>
     )
