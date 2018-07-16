@@ -24,9 +24,11 @@
     "chai": "^4.1.2",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.0",
+    "gh-pages": "1.2.0",
     "gulp-concat": "^2.6.1",
     "html-webpack-plugin": "^2.30.1",
     "mocha": "^3.5.3",
+    "npx": "10.2.0",
     "path": "^0.12.7",
     "standard-version": "^4.2.0",
     "style-loader": "^0.18.2",
@@ -51,6 +53,7 @@
     "build:demo": "webpack --config webpack.demo.config.js",
     "compile": "npm run build && npm run build:demo",
     "release": "standard-version",
-    "serve": "webpack-dev-server --config webpack.demo.config.js"
+    "serve": "webpack-dev-server --config webpack.demo.config.js",
+    "deploy": "npx gh-pages --repo https://$GH_TOKEN@github.com/noelalfonsomiranda/react-month-picker-calendar.git -d docs -m '--skip-ci'"
   }
 }
