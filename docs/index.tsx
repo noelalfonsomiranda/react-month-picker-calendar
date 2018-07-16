@@ -44,6 +44,7 @@ ReactDOM.render(
           month={new Date().getMonth()}
           inputProps={{id: "ex-2", name: "ex-2"}} 
           onChangeYearUpdate={false}
+          rangePicker
         />
           
       </label>

@@ -20,3 +20,11 @@ export const valuesFromMask = (mask: string): [number, number] => {
 
   return [month, year];
 }
+
+
+export const rangeCreator = (start: number, count: number): string[] => {
+  return Array.apply(0, Array(count))
+    .map(function (element, index) { 
+      return `${(index + start)}`;  
+  });
+}

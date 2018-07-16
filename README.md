@@ -13,7 +13,9 @@ A month picker input and calendar for React.
 | onChange | Function: (maskedValue: string, year: number, month: number) => any | - | onChange callback, receives `maskedValue`, `year` and `month` (begins with 0) as arguments |
 | closeOnSelect | boolean | false | Close calendar on month select |
 | onChangeYearUpdate | boolean | true | Handle year update with previous and next |
+| rangePicker | boolean | false | Will show the range default of 12 months |
 | inputRef | Function: (ref) => any | - | Modification of calendar input |
+
 
 ## Installation
 
