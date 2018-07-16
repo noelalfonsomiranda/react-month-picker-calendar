@@ -1,6 +1,8 @@
 React-Month-Picker-Calendar
 ====================
 
+[![codeship status](https://app.codeship.com/projects/298115/status?branch=master "codeship status")](https://www.codeship.io/projects/298115)
+
 A month picker input and calendar for React.
 
 ## API
