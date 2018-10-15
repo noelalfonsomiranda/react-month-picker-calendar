@@ -19,7 +19,7 @@ export interface IProps {
 
 export interface IState {
   years: Array<number>,
-  selectedYear: void|number,
+  selectedYear: any|number,
   selectedMonth: void|number,
   currentView: string,
   unRangeMonths: any
@@ -65,13 +65,15 @@ class MonthCalendar extends Component<IProps, IState> {
   };
 
   previous = (): void => {
-    let parseYear = this.state.years[6] -= 1;
-    this.selectYear(parseYear)
+    this.setState(({selectedYear}) => ({
+      selectedYear: selectedYear -= 1
+    }), () => this.selectYear(this.state.selectedYear))
   }
 
-  next = () => {
-    let parseYear = this.state.years[6] += 1;
-    this.selectYear(parseYear)
+  next = (): void => {
+    this.setState(({selectedYear}) => ({
+      selectedYear: selectedYear += 1
+    }), () => this.selectYear(this.state.selectedYear))
   }
 
   updateYears = (startYear: number): void => {
