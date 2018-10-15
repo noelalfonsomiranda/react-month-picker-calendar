@@ -65,12 +65,12 @@ class MonthCalendar extends Component<IProps, IState> {
   };
 
   previous = (): void => {
-    const parseYear = this.state.years[6] -= 1;
+    let parseYear = this.state.years[6] -= 1;
     this.selectYear(parseYear)
   }
 
   next = () => {
-    const parseYear = this.state.years[6] += 1;
+    let parseYear = this.state.years[6] += 1;
     this.selectYear(parseYear)
   }
 
