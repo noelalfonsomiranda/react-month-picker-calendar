@@ -23421,12 +23421,20 @@ var MonthCalendar = /** @class */ (function (_super) {
             _this.onChange(_this.state.selectedYear, selectedMonth);
         };
         _this.previous = function () {
-            var parseYear = _this.state.years[6] -= 1;
-            _this.selectYear(parseYear);
+            _this.setState(function (_a) {
+                var selectedYear = _a.selectedYear;
+                return ({
+                    selectedYear: selectedYear -= 1
+                });
+            }, function () { return _this.selectYear(_this.state.selectedYear); });
         };
         _this.next = function () {
-            var parseYear = _this.state.years[6] += 1;
-            _this.selectYear(parseYear);
+            _this.setState(function (_a) {
+                var selectedYear = _a.selectedYear;
+                return ({
+                    selectedYear: selectedYear += 1
+                });
+            }, function () { return _this.selectYear(_this.state.selectedYear); });
         };
         _this.updateYears = function (startYear) {
             var years = Array.from({ length: 12 }, function (v, k) { return k + startYear; });
