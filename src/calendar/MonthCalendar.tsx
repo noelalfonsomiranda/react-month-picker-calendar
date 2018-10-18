@@ -64,13 +64,13 @@ class MonthCalendar extends Component<IProps, IState> {
     this.onChange(this.state.selectedYear, selectedMonth);
   };
 
-  previous = (): void => {
+  previous = () => {
     this.setState(({selectedYear}) => ({
       selectedYear: selectedYear -= 1
     }), () => this.selectYear(this.state.selectedYear))
   }
 
-  next = (): void => {
+  next = () => {
     this.setState(({selectedYear}) => ({
       selectedYear: selectedYear += 1
     }), () => this.selectYear(this.state.selectedYear))
