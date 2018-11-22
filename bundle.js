@@ -359,7 +359,7 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render((__WEBPACK_IMPORTED_MOD
         "With default year and month",
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_month_picker_input__["a" /* default */], { inputRef: function (ref) {
                 _this.input = ref;
-            }, year: new Date().getFullYear(), month: new Date().getMonth(), inputProps: { id: "ex-2", name: "ex-2" }, onChangeYearUpdate: false, rangePicker: true })))), document.getElementById('examples'));
+            }, year: new Date().getFullYear(), month: new Date().getMonth(), inputProps: { id: "ex-2", name: "ex-2" }, onChangeYearUpdate: false, isOpen: true })))), document.getElementById('examples'));
 
 
 /***/ }),
@@ -21728,6 +21728,12 @@ var MonthPickerInput = /** @class */ (function (_super) {
                 onChange: _this.onInputChange,
             }, _this.props.inputProps);
         };
+        _this.handleRenderCalendar = function () {
+            if (_this.props.isOpen || _this.state.showCalendar) {
+                return _this.calendar();
+            }
+            return false;
+        };
         var _a = _this.props, year = _a.year, month = _a.month;
         var inputValue = '';
         if (typeof year == 'number' && typeof month == 'number') {
@@ -21744,11 +21750,10 @@ var MonthPickerInput = /** @class */ (function (_super) {
     ;
     MonthPickerInput.prototype.render = function () {
         var _this = this;
-        var _a = this.state, inputValue = _a.inputValue, showCalendar = _a.showCalendar;
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { ref: function (wrap) { if (wrap)
                 _this.wrapper = wrap; } },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_input_mask__["a" /* default */], __assign({ value: inputValue }, this.inputProps())),
-            this.calendar()));
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_input_mask__["a" /* default */], __assign({ value: this.state.inputValue }, this.inputProps())),
+            this.handleRenderCalendar()));
     };
     ;
     MonthPickerInput.defaultProps = {
