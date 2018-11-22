@@ -17,6 +17,7 @@ A month picker input and calendar for React.
 | onChangeYearUpdate | boolean | true | Handle year update with previous and next |
 | rangePicker | boolean | false | Will show the range default of 12 months |
 | inputRef | Function: (ref) => any | - | Modification of calendar input |
+| isOpen | boolean | - | to open automatically calendar on mount |
 
 
 ## Installation
