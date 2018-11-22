@@ -28,7 +28,7 @@ export interface IProps {
   onChangeYearUpdate?: boolean,
   inputRef?: Function,
   rangePicker?:boolean,
-  openCalendar ?: boolean
+  isOpen ?: boolean
 };
 
 export interface IState {
