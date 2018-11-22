@@ -27,7 +27,8 @@ export interface IProps {
   closeOnSelect?: boolean,
   onChangeYearUpdate?: boolean,
   inputRef?: Function,
-  rangePicker?:boolean
+  rangePicker?:boolean,
+  openCalendar ?: boolean
 };
 
 export interface IState {
@@ -150,18 +151,22 @@ class MonthPickerInput extends Component<IProps, IState> {
     }, this.props.inputProps)
   };
 
-  render() {
-    const { inputValue, showCalendar } = this.state;
+  handleRenderCalendar = () => {
+    if (this.props.isOpen || this.state.showCalendar) {
+      return this.calendar()
+    }
 
+    return false
+  }
+
+  render() {
     return (
       <div ref={wrap => { if(wrap) this.wrapper = wrap; }}>
         <InputMask
-          value={inputValue}
+          value={this.state.inputValue}
           {...this.inputProps()}
         />
-
-        {/* { showCalendar && this.calendar() } */}
-        { this.calendar() }
+        { this.handleRenderCalendar() }
       </div>
     );
   };
