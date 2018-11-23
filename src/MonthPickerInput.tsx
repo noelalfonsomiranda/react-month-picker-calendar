@@ -49,6 +49,8 @@ class MonthPickerInput extends Component<IProps, IState> {
     rangePicker: false
   };
 
+  _monthYearHandler = false
+
   constructor(props) {
     super(props);
 
@@ -62,13 +64,13 @@ class MonthPickerInput extends Component<IProps, IState> {
   onCalendarMount = (prevProps): void => {
     const {year, month }  = this.props
 
-    if (prevProps.month !== month && prevProps.year !== year) {
-      
+    if ((prevProps.month !== month && prevProps.year !== year) && !this._monthYearHandler) {
       this.handleStateInitialize()
       this.setState({
-        year,
-        month,
+        year: year || new Date().getFullYear(),
+        month: month || new Date().getMonth()
       })
+      this._monthYearHandler = true
     }
   }
 
@@ -167,7 +169,7 @@ class MonthPickerInput extends Component<IProps, IState> {
         
         inputRef && inputRef(input) 
       },
-      mask: '99/99',
+      mask: '99/9999',
       placeholder: dateFormat,
       type: 'text',
       onBlur: this.onInputBlur,
