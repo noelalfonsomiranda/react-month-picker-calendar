@@ -21661,6 +21661,29 @@ var MonthPickerInput = /** @class */ (function (_super) {
     __extends(MonthPickerInput, _super);
     function MonthPickerInput(props) {
         var _this = _super.call(this, props) || this;
+        _this.onCalendarMount = function (prevProps) {
+            var _a = _this.props, year = _a.year, month = _a.month;
+            if (prevProps.month !== month && prevProps.year !== year) {
+                _this.handleStateInitialize();
+                _this.setState({
+                    year: year,
+                    month: month,
+                });
+            }
+        };
+        _this.handleStateInitialize = function () {
+            var _a = _this.props, year = _a.year, month = _a.month;
+            var inputValue = '';
+            if (typeof year == 'number' && typeof month == 'number') {
+                inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["c" /* valuesToMask */])(month, year, _this.props.lang);
+            }
+            _this.state = {
+                year: year,
+                month: month,
+                inputValue: inputValue,
+                showCalendar: false,
+            };
+        };
         _this.onCalendarChange = function (year, month) {
             var inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["c" /* valuesToMask */])(month, year, _this.props.lang);
             _this.setState({
@@ -21710,6 +21733,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
         };
         _this.inputProps = function () {
             var inputRef = _this.props.inputRef;
+            // monthYearFormat: TODO
             var dateFormat = DATE_FORMAT["default"];
             if (_this.props.lang == "ja") {
                 dateFormat = DATE_FORMAT["ja"];
@@ -21720,7 +21744,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
                         _this.input = input;
                     inputRef && inputRef(input);
                 },
-                mask: "99/99",
+                mask: '99/9999',
                 placeholder: dateFormat,
                 type: 'text',
                 onBlur: _this.onInputBlur,
@@ -21734,20 +21758,13 @@ var MonthPickerInput = /** @class */ (function (_super) {
             }
             return false;
         };
-        var _a = _this.props, year = _a.year, month = _a.month;
-        var inputValue = '';
-        if (typeof year == 'number' && typeof month == 'number') {
-            inputValue = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["c" /* valuesToMask */])(month, year, _this.props.lang);
-        }
-        _this.state = {
-            year: year,
-            month: month,
-            inputValue: inputValue,
-            showCalendar: false,
-        };
+        _this.handleStateInitialize();
         return _this;
     }
     ;
+    MonthPickerInput.prototype.componentDidUpdate = function (prevProps) {
+        this.onCalendarMount(prevProps);
+    };
     MonthPickerInput.prototype.render = function () {
         var _this = this;
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { ref: function (wrap) { if (wrap)

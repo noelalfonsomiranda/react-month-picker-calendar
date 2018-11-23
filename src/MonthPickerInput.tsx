@@ -28,7 +28,8 @@ export interface IProps {
   onChangeYearUpdate?: boolean,
   inputRef?: Function,
   rangePicker?:boolean,
-  isOpen ?: boolean
+  isOpen ?: boolean,
+  monthYearFormat ?: string
 };
 
 export interface IState {
@@ -50,6 +51,28 @@ class MonthPickerInput extends Component<IProps, IState> {
 
   constructor(props) {
     super(props);
+
+    this.handleStateInitialize()
+  };
+
+  componentDidUpdate(prevProps) {
+    this.onCalendarMount(prevProps)
+  }
+
+  onCalendarMount = (prevProps): void => {
+    const {year, month }  = this.props
+
+    if (prevProps.month !== month && prevProps.year !== year) {
+      
+      this.handleStateInitialize()
+      this.setState({
+        year,
+        month,
+      })
+    }
+  }
+
+  handleStateInitialize = (): void => {
     const { year, month } = this.props;
     let inputValue = '';
 
@@ -63,7 +86,7 @@ class MonthPickerInput extends Component<IProps, IState> {
       inputValue,
       showCalendar: false,
     }
-  };
+  }
 
   onCalendarChange = (year, month): void => {
     const inputValue = valuesToMask(month, year, this.props.lang);
@@ -131,6 +154,8 @@ class MonthPickerInput extends Component<IProps, IState> {
 
   inputProps = (): object => {
     const { inputRef } = this.props
+
+    // monthYearFormat: TODO
     let dateFormat = DATE_FORMAT["default"];
     if (this.props.lang == "ja") {
       dateFormat = DATE_FORMAT["ja"];
@@ -142,7 +167,7 @@ class MonthPickerInput extends Component<IProps, IState> {
         
         inputRef && inputRef(input) 
       },
-      mask: "99/99",
+      mask: '99/9999',
       placeholder: dateFormat,
       type: 'text',
       onBlur: this.onInputBlur,
