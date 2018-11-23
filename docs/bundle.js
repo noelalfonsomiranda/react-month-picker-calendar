@@ -21744,7 +21744,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
                         _this.input = input;
                     inputRef && inputRef(input);
                 },
-                mask: '99/9999',
+                mask: '99/99',
                 placeholder: dateFormat,
                 type: 'text',
                 onBlur: _this.onInputBlur,

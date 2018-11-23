@@ -167,7 +167,7 @@ class MonthPickerInput extends Component<IProps, IState> {
         
         inputRef && inputRef(input) 
       },
-      mask: '99/9999',
+      mask: '99/99',
       placeholder: dateFormat,
       type: 'text',
       onBlur: this.onInputBlur,
