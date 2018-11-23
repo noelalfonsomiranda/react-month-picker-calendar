@@ -21661,14 +21661,16 @@ var MonthPickerInput = /** @class */ (function (_super) {
     __extends(MonthPickerInput, _super);
     function MonthPickerInput(props) {
         var _this = _super.call(this, props) || this;
+        _this._monthYearHandler = false;
         _this.onCalendarMount = function (prevProps) {
             var _a = _this.props, year = _a.year, month = _a.month;
-            if (prevProps.month !== month && prevProps.year !== year) {
+            if ((prevProps.month !== month && prevProps.year !== year) && !_this._monthYearHandler) {
                 _this.handleStateInitialize();
                 _this.setState({
-                    year: year,
-                    month: month,
+                    year: year || new Date().getFullYear(),
+                    month: month || new Date().getMonth()
                 });
+                _this._monthYearHandler = true;
             }
         };
         _this.handleStateInitialize = function () {
@@ -21744,7 +21746,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
                         _this.input = input;
                     inputRef && inputRef(input);
                 },
-                mask: '99/99',
+                mask: '99/9999',
                 placeholder: dateFormat,
                 type: 'text',
                 onBlur: _this.onInputBlur,
