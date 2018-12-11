@@ -29,7 +29,8 @@ export interface IProps {
   inputRef?: Function,
   rangePicker?:boolean,
   isOpen ?: boolean,
-  monthYearFormat ?: string
+  monthYearFormat ?: string,
+  placeholder ?: any
 };
 
 export interface IState {
@@ -154,7 +155,7 @@ class MonthPickerInput extends Component<IProps, IState> {
     )
   };
 
-  inputProps = (): object => {
+  inputProps = ({customPlaceholder}): object => {
     const { inputRef } = this.props
 
     // monthYearFormat: TODO
@@ -170,7 +171,7 @@ class MonthPickerInput extends Component<IProps, IState> {
         inputRef && inputRef(input) 
       },
       mask: '99/9999',
-      placeholder: dateFormat,
+      placeholder: customPlaceholder ? customPlaceholder : dateFormat,
       type: 'text',
       onBlur: this.onInputBlur,
       onFocus: this.onInputFocus,
@@ -187,11 +188,14 @@ class MonthPickerInput extends Component<IProps, IState> {
   }
 
   render() {
+    const {placeholder} = this.props
     return (
       <div ref={wrap => { if(wrap) this.wrapper = wrap; }}>
         <InputMask
           value={this.state.inputValue}
-          {...this.inputProps()}
+          {...this.inputProps({
+            customPlaceholder: placeholder
+          })}
         />
         { this.handleRenderCalendar() }
       </div>
