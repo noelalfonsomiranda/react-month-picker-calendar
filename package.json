@@ -41,8 +41,10 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "lodash.merge": "4.6.1",
     "moment": "^2.22.2",
     "moment-range": "^4.0.1",
+    "punycode": "2.1.1",
     "react": "16.5.2",
     "react-dom": "16.5.2",
     "react-input-mask": "^1.0.7"
