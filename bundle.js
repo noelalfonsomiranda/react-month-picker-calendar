@@ -21733,7 +21733,8 @@ var MonthPickerInput = /** @class */ (function (_super) {
             return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { position: 'relative' } },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__calendar__["a" /* default */], { year: year, month: month, lang: lang, onChange: _this.onCalendarChange, onOutsideClick: _this.onCalendarOutsideClick, onChangeYearUpdate: onChangeYearUpdate, rangePicker: rangePicker })));
         };
-        _this.inputProps = function () {
+        _this.inputProps = function (_a) {
+            var customPlaceholder = _a.customPlaceholder;
             var inputRef = _this.props.inputRef;
             // monthYearFormat: TODO
             var dateFormat = DATE_FORMAT["default"];
@@ -21747,7 +21748,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
                     inputRef && inputRef(input);
                 },
                 mask: '99/9999',
-                placeholder: dateFormat,
+                placeholder: customPlaceholder ? customPlaceholder : dateFormat,
                 type: 'text',
                 onBlur: _this.onInputBlur,
                 onFocus: _this.onInputFocus,
@@ -21769,9 +21770,12 @@ var MonthPickerInput = /** @class */ (function (_super) {
     };
     MonthPickerInput.prototype.render = function () {
         var _this = this;
+        var placeholder = this.props.placeholder;
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { ref: function (wrap) { if (wrap)
                 _this.wrapper = wrap; } },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_input_mask__["a" /* default */], __assign({ value: this.state.inputValue }, this.inputProps())),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_input_mask__["a" /* default */], __assign({ value: this.state.inputValue }, this.inputProps({
+                customPlaceholder: placeholder
+            }))),
             this.handleRenderCalendar()));
     };
     ;
