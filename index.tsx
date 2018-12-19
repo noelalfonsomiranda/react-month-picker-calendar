@@ -44,10 +44,25 @@ ReactDOM.render(
           month={new Date().getMonth()}
           inputProps={{id: "ex-2", name: "ex-2"}} 
           onChangeYearUpdate={false}
-          isOpen
+          
         />
           
       </label>
+
+      <div>
+        asd
+        <input placeholder="Year" id="ex-5-year" type="number"
+          onChange={(e) => this.setState({ year: parseInt(e.target.value) || 2018 })} />
+        <input placeholder="Month" id="ex-5-month" type="number"
+          onChange={(e) => this.setState({ month: parseInt(e.target.value) || 5 })} />
+
+        <MonthPickerInput
+          year={new Date().getFullYear()}
+          month={new Date().getMonth() -1}
+          // i18n={{ dateFormat: { default: 'YYYY/MM' } }}
+          inputProps={{id: "ex-5", name: "ex-5"}}
+        />
+      </div>
     </div>
   ),
   document.getElementById('examples')
