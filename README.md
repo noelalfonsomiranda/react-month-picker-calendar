@@ -18,6 +18,7 @@ A month picker input and calendar for React.
 | rangePicker | boolean | false | Will show the range default of 12 months |
 | inputRef | Function: (ref) => any | - | Modification of calendar input |
 | isOpen | boolean | - | to open automatically calendar on mount |
+| placeholder | string/any | MM/YY | to set a custom placeholder |
 
 
 ## Installation
