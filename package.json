@@ -1,6 +1,6 @@
 {
   "name": "react-month-picker-calendar",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "Modified package from react-month-picker-input.",
   "main": "./dist/react-month-picker-input.js",
   "repository": {
