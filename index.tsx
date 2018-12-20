@@ -61,6 +61,7 @@ ReactDOM.render(
           month={new Date().getMonth() -1}
           // i18n={{ dateFormat: { default: 'YYYY/MM' } }}
           inputProps={{id: "ex-5", name: "ex-5"}}
+          disabledInputChange
         />
       </div>
     </div>
