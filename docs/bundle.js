@@ -21952,7 +21952,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
         };
         _this.inputProps = function (_a) {
             var customPlaceholder = _a.customPlaceholder;
-            var _b = _this.props, inputRef = _b.inputRef, disabledInputChange = _b.disabledInputChange;
+            var _b = _this.props, inputRef = _b.inputRef, _c = _b.disabledInputChange, disabledInputChange = _c === void 0 ? false : _c;
             // monthYearFormat: TODO
             var dateFormat = DATE_FORMAT["default"];
             if (_this.props.lang == "ja") {
