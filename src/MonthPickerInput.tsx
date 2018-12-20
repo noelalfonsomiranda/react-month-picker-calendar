@@ -188,7 +188,7 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   inputProps = ({customPlaceholder}): object => {
-    const { inputRef, disabledInputChange } = this.props
+    const { inputRef, disabledInputChange = false } = this.props
 
     // monthYearFormat: TODO
     let dateFormat = DATE_FORMAT["default"];
