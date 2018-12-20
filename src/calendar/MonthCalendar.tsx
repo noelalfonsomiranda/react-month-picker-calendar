@@ -37,10 +37,10 @@ class MonthCalendar extends Component<IProps, IState> {
     const { year, month } = this.props;
 
     const startYear = this.props.startYear || new Date().getFullYear() - 6;
-
+    const selectedYear = year || new Date().getFullYear()
     this.state = {
       years: Array.from({length: 12}, (v, k) => k + startYear),
-      selectedYear: year,
+      selectedYear,
       selectedMonth: month,
       currentView: year ? VIEW_MONTHS : VIEW_YEARS,
       unRangeMonths: []
@@ -177,8 +177,8 @@ class MonthCalendar extends Component<IProps, IState> {
       (year !== oldYear || month !== oldMonth)
     ) {
       this.setState({
-        selectedYear: year,
-        selectedMonth: month,
+        selectedYear: year || new Date().getFullYear(),
+        selectedMonth: month || new Date().getMonth(),
         currentView: VIEW_MONTHS
       });
       this.handleMonthRange(month);
@@ -187,7 +187,6 @@ class MonthCalendar extends Component<IProps, IState> {
 
   render(): JSX.Element {
     const { selectedYear, selectedMonth } = this.state;
-
     return (
       <OutsideClickWrapper
         onOutsideClick={this.props.onOutsideClick}

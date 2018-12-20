@@ -23220,9 +23220,10 @@ var MonthCalendar = /** @class */ (function (_super) {
         };
         var _a = _this.props, year = _a.year, month = _a.month;
         var startYear = _this.props.startYear || new Date().getFullYear() - 6;
+        var selectedYear = year || new Date().getFullYear();
         _this.state = {
             years: Array.from({ length: 12 }, function (v, k) { return k + startYear; }),
-            selectedYear: year,
+            selectedYear: selectedYear,
             selectedMonth: month,
             currentView: year ? __WEBPACK_IMPORTED_MODULE_3__constants__["b" /* VIEW_MONTHS */] : __WEBPACK_IMPORTED_MODULE_3__constants__["c" /* VIEW_YEARS */],
             unRangeMonths: []
@@ -23239,8 +23240,8 @@ var MonthCalendar = /** @class */ (function (_super) {
             typeof month == 'number' &&
             (year !== oldYear || month !== oldMonth)) {
             this.setState({
-                selectedYear: year,
-                selectedMonth: month,
+                selectedYear: year || new Date().getFullYear(),
+                selectedMonth: month || new Date().getMonth(),
                 currentView: __WEBPACK_IMPORTED_MODULE_3__constants__["b" /* VIEW_MONTHS */]
             });
             this.handleMonthRange(month);
