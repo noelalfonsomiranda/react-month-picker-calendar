@@ -559,7 +559,7 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render((__WEBPACK_IMPORTED_MOD
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { placeholder: "Month", id: "ex-5-month", type: "number", onChange: function (e) { return _this.setState({ month: parseInt(e.target.value) || 5 }); } }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_month_picker_input__["a" /* default */], { year: new Date().getFullYear(), month: new Date().getMonth() - 1, 
             // i18n={{ dateFormat: { default: 'YYYY/MM' } }}
-            inputProps: { id: "ex-5", name: "ex-5" } })))), document.getElementById('examples'));
+            inputProps: { id: "ex-5", name: "ex-5" }, disabledInputChange: true })))), document.getElementById('examples'));
 
 
 /***/ }),
@@ -21952,7 +21952,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
         };
         _this.inputProps = function (_a) {
             var customPlaceholder = _a.customPlaceholder;
-            var inputRef = _this.props.inputRef;
+            var _b = _this.props, inputRef = _b.inputRef, disabledInputChange = _b.disabledInputChange;
             // monthYearFormat: TODO
             var dateFormat = DATE_FORMAT["default"];
             if (_this.props.lang == "ja") {
@@ -21969,7 +21969,7 @@ var MonthPickerInput = /** @class */ (function (_super) {
                 type: 'text',
                 onBlur: _this.onInputBlur,
                 onFocus: _this.onInputFocus,
-                onChange: _this.onInputChange,
+                onChange: !disabledInputChange ? _this.onInputChange : null,
             }, _this.props.inputProps);
         };
         _this.handleRenderCalendar = function () {
@@ -22015,7 +22015,8 @@ var MonthPickerInput = /** @class */ (function (_super) {
     MonthPickerInput.defaultProps = {
         inputProps: {},
         closeOnSelect: false,
-        rangePicker: false
+        rangePicker: false,
+        disabledInputChange: false
     };
     return MonthPickerInput;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));

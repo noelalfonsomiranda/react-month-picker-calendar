@@ -36,7 +36,8 @@ export interface IProps {
   isOpen ?: boolean,
   monthYearFormat ?: string,
   placeholder ?: any
-  i18n?: Partial<II18n>
+  i18n?: Partial<II18n>,
+  disabledInputChange?:boolean
 };
 
 export interface IState {
@@ -55,7 +56,8 @@ class MonthPickerInput extends Component<IProps, IState> {
   public static defaultProps: Partial<IProps> = {
     inputProps: {},
     closeOnSelect: false,
-    rangePicker: false
+    rangePicker: false,
+    disabledInputChange: false
   };
 
   _monthYearHandler = false
@@ -187,7 +189,7 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   inputProps = ({customPlaceholder}): object => {
-    const { inputRef } = this.props
+    const { inputRef, disabledInputChange } = this.props
 
     // monthYearFormat: TODO
     let dateFormat = DATE_FORMAT["default"];
@@ -206,7 +208,7 @@ class MonthPickerInput extends Component<IProps, IState> {
       type: 'text',
       onBlur: this.onInputBlur,
       onFocus: this.onInputFocus,
-      onChange: this.onInputChange,
+      onChange: !disabledInputChange ? this.onInputChange : null,
     }, this.props.inputProps)
   };
 
