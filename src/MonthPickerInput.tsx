@@ -56,7 +56,8 @@ class MonthPickerInput extends Component<IProps, IState> {
   public static defaultProps: Partial<IProps> = {
     inputProps: {},
     closeOnSelect: false,
-    rangePicker: false
+    rangePicker: false,
+    disabledInputChange: false
   };
 
   _monthYearHandler = false
@@ -188,7 +189,7 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   inputProps = ({customPlaceholder}): object => {
-    const { inputRef, disabledInputChange = false } = this.props
+    const { inputRef, disabledInputChange } = this.props
 
     // monthYearFormat: TODO
     let dateFormat = DATE_FORMAT["default"];
