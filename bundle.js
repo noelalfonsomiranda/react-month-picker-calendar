@@ -21944,10 +21944,10 @@ var MonthPickerInput = /** @class */ (function (_super) {
             _this.setState({ showCalendar: _this.input.input == e.target });
         };
         _this.calendar = function () {
-            var _a = _this.props, onChangeYearUpdate = _a.onChangeYearUpdate, rangePicker = _a.rangePicker;
+            var _a = _this.props, onChangeYearUpdate = _a.onChangeYearUpdate, rangePicker = _a.rangePicker, className = _a.className;
             var _b = _this.state, year = _b.year, month = _b.month;
             var lang = _this.props.lang ? _this.props.lang : 'default';
-            return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { position: 'relative' } },
+            return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { position: 'relative' }, className: className },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__calendar__["a" /* default */], { year: year, month: month, lang: lang, onChange: _this.onCalendarChange, onOutsideClick: _this.onCalendarOutsideClick, onChangeYearUpdate: onChangeYearUpdate, rangePicker: rangePicker })));
         };
         _this.inputProps = function (_a) {
