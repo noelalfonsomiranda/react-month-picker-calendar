@@ -37,7 +37,8 @@ export interface IProps {
   monthYearFormat ?: string,
   placeholder ?: any
   i18n?: Partial<II18n>,
-  disabledInputChange?:boolean
+  disabledInputChange?:boolean,
+  className ?: string,
 };
 
 export interface IState {
@@ -170,11 +171,11 @@ class MonthPickerInput extends Component<IProps, IState> {
   };
 
   calendar = (): JSX.Element => {
-    const { onChangeYearUpdate, rangePicker } = this.props
+    const { onChangeYearUpdate, rangePicker, className } = this.props
     const { year, month } = this.state;
     let lang = this.props.lang ? this.props.lang : 'default';
     return (
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: 'relative' }} className={className}>
         <MonthCalendar
           year={year}
           month={month}
