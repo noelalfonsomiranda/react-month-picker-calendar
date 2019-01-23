@@ -19,6 +19,7 @@ A month picker input and calendar for React.
 | inputRef | Function: (ref) => any | - | Modification of calendar input |
 | isOpen | boolean | - | to open automatically calendar on mount |
 | placeholder | string/any | MM/YY | to set a custom placeholder |
+| className | string/any | - | to set className of top level element for custom styling |
 | disabledInputChange | boolean | false | disabling the input field to input numbers |
 
 
