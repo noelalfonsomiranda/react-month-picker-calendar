@@ -23266,7 +23266,6 @@ var MonthCalendar = /** @class */ (function (_super) {
     MonthCalendar.prototype.componentWillReceiveProps = function (nextProps) {
         var _a = this.props, oldYear = _a.year, oldMonth = _a.month;
         var year = nextProps.year, month = nextProps.month;
-        console.log(month, oldMonth);
         if (typeof year == 'number' &&
             typeof month == 'number' &&
             (year !== oldYear || month !== oldMonth)) {

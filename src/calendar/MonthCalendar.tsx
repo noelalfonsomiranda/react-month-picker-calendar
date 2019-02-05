@@ -174,8 +174,6 @@ class MonthCalendar extends Component<IProps, IState> {
     const { year: oldYear, month: oldMonth } = this.props
     const { year, month } = nextProps;
 
-    console.log(month,oldMonth)
-
     if (typeof year == 'number' &&
       typeof month == 'number' &&
       (year !== oldYear || month !== oldMonth)
