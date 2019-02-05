@@ -5,6 +5,8 @@ import OutsideClickWrapper from '../OutsideClickWrapper';
 import Head from './Head';
 import { MONTHS_NAMES, VIEW_MONTHS, VIEW_YEARS } from './constants';
 import { rangeCreator } from '../utils'
+import { isNumeric } from 'tslint';
+import { isNumber } from 'util';
 
 export interface IProps {
   year: void|number,
@@ -119,7 +121,7 @@ class MonthCalendar extends Component<IProps, IState> {
 
   shouldShowActiveRange = (month) => {
     if (this.isCurrentActiveRange(month)) {
-      return 'active';
+      return 'aw';
     }
  
     return '';
@@ -160,7 +162,7 @@ class MonthCalendar extends Component<IProps, IState> {
   handleMonthRange = (month): void => {
     const months = [ ...MONTHS_NAMES['default'] ]
     this.setState({
-      unRangeMonths: months.splice(month)
+      unRangeMonths: months.splice(month),
     });
   }
 
@@ -172,13 +174,15 @@ class MonthCalendar extends Component<IProps, IState> {
     const { year: oldYear, month: oldMonth } = this.props
     const { year, month } = nextProps;
 
+    console.log(month,oldMonth)
+
     if (typeof year == 'number' &&
       typeof month == 'number' &&
       (year !== oldYear || month !== oldMonth)
     ) {
       this.setState({
         selectedYear: year || new Date().getFullYear(),
-        selectedMonth: month || new Date().getMonth(),
+        selectedMonth: isNumber(month) ? month : new Date().getMonth(),
         currentView: VIEW_MONTHS
       });
       this.handleMonthRange(month);
@@ -187,6 +191,7 @@ class MonthCalendar extends Component<IProps, IState> {
 
   render(): JSX.Element {
     const { selectedYear, selectedMonth } = this.state;
+    
     return (
       <OutsideClickWrapper
         onOutsideClick={this.props.onOutsideClick}
